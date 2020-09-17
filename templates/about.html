@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>My Object Detection Program</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link href="{{ url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+
+  <!-- Custom Fonts -->
+  <link href="{{ url_for('static',filename='vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+  <link href="{{ url_for('static',filename='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic')}}" rel="stylesheet" type="text/css">
+  <link href="{{ url_for('static',filename='vendor/simple-line-icons/css/simple-line-icons.css')}}" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="{{ url_for('static',filename='css/stylish-portfolio.min.css')}}" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+
+      {% if error %}
+      <script>
+
+        alert("Plases select image to upload ");
+
+      </script>     
+     {% endif %}
+  <!-- Navigation -->
+  <!-- Navigation -->
+  <a class="menu-toggle rounded" href="#">
+    <i class="fas fa-bars"></i>
+  </a>
+  <nav id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li class="sidebar-brand">
+        <a class="js-scroll-trigger" href="#page-top">Object Detection</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="/">Home</a>
+      </li>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="js-scroll-trigger" href="/about">About Algo</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Header -->
+  <header class="masthead d-flex" style="background-image: {{url_for('static' , filename='img/mc3.jpg')}}">
+    <div class="container text-center my-auto">
+      <h1 class="mb-1" style="color: white">Object Detection</h1>
+      <h3 class="mb-5" style="color: white">
+        <em>Object Detection using Machine Learning</em>
+      </h3>
+     
+    </div>
+    <div class="overlay"></div>
+  </header>
+
+  <!-- About -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto" style="font-family: fantasy,font-size-adjust: 3; ">
+          <br>
+          <br>
+           <h1><b> Real-time Object Detection with YOLO, YOLOv2 and now YOLOv3</b></h1>
+           
+           
+              <h2><li>The objects detected by YOLO</h2>
+                  <p style="font-size-adjust: 2">For our discussion, we crop our original photo. YOLO divides the input image into an S×S grid. Each grid cell predicts only one object. For example, the yellow grid cell below tries to predict the “person” object whose center (the blue dot) falls inside the grid cell.<br>
+                  Each grid cell predicts a fixed number of boundary boxes. In this example, the yellow grid cell makes two boundary box predictions (blue boxes) to locate where the person is.
+              </p></li> 
+              <h2><li>For each Grid</h2>
+                <p style="font-size-adjust: 2">
+                  Let’s get into more details. Each boundary box contains 5 elements: (x, y, w, h) and a box confidence score. The confidence score reflects how likely the box contains an object (objectness) and how accurate is the boundary box. We normalize the bounding box width w and height h by the image width and height. x and y are offsets to the corresponding cell. Hence, x, y, w and h are all between 0 and 1. Each cell has 20 conditional class probabilities. The conditional class probability is the probability that the detected object belongs to a particular class (one probability per category for each cell). So, YOLO’s prediction has a shape of (S, S, B×5 + C) = (7, 7, 2×5 + 20) = (7, 7, 30).<br>
+                  The major concept of YOLO is to build a CNN network to predict a (7, 7, 30) tensor. It uses a CNN network to reduce the spatial dimension to 7×7 with 1024 output channels at each location. YOLO performs a linear regression using two fully connected layers to make 7×7×2 boundary box predictions (the middle picture below). To make a final prediction, we keep those with high box confidence scores (greater than 0.25) as our final predictions (the right picture).
+
+              </p></li>
+              
+                    <img style="" src="{{url_for('static',filename='city.jpg')}}">
+              
+           
+          </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer text-center">
+    <div class="container">
+      <ul class="list-inline mb-5">
+        <li class="list-inline-item">
+          <a class="social-link rounded-circle text-white mr-3" href="{{params['fb_url']}}">
+            <i class="icon-social-facebook"></i>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a class="social-link rounded-circle text-white mr-3" href="{{params['tw_url']}}">
+            <i class="icon-social-twitter"></i>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a class="social-link rounded-circle text-white" href="{{params['git_url']}}">
+            <i class="icon-social-github"></i>
+          </a>
+        </li>
+      </ul>
+      <p class="text-muted small mb-0">Copyright &copy; Your Website 2020</p>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{{ url_for('static',filename='vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{ url_for('static',filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="{{ url_for('static',filename='vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="{{ url_for('static',filename='js/stylish-portfolio.min.js')}}"></script>
+
+</body>
+
+</html>
